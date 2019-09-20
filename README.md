@@ -1,0 +1,5 @@
+# IAM role module for AWS
+This is a terraform module to make an IAM role. To find out how to use this module please check below examples.
+
+## Examples
+- [Complete Example](https://github.com/tf-mod/terraform-aws-rbac-role/tree/master/examples/complete)
