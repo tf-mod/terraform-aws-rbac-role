@@ -2,7 +2,7 @@
 
 variable "allowed_accounts" {
   description = "The list of aws account ids to allow them to assume roles in this account(e.g. 857026751867)"
-  default = ["336686831133"] // This is the account number of ID account
+  default     = ["336686831133"] // This is the account number of ID account
 }
 
 variable "policy_arn" {
