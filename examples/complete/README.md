@@ -14,6 +14,7 @@ module "infra-engineer-role" {
   stack            = var.stack
   desc             = var.desc
   policy_arn       = ["arn:aws:iam::aws:policy/AdministratorAccess"]
+  session_duration = "7200"
   allowed_accounts = var.allowed_accounts
 }
 ```
