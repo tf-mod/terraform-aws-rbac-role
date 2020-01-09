@@ -14,6 +14,11 @@ variable "policy_arn" {
   default     = []
 }
 
+variable "session_duration" {
+  description = "A value for maximum time of session duration in seconds (default 1h). This setting can have a value from 1 hour to 12 hours"
+  default     = "3600"
+}
+
 # description
 variable "name" {
   description = "The logical name of role"
