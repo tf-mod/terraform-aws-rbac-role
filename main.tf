@@ -8,13 +8,14 @@ resource "aws_iam_role" "role" {
 data "aws_iam_policy_document" "trustrel" {
   statement {
     effect = "Allow"
-
-    principals {
-      type        = "AWS"
-      identifiers = var.allowed_accounts
-    }
-
     actions = ["sts:AssumeRole"]
+    dynamic "principals" {
+      for_each = var.principals
+      content {
+        type        = lower(principals.key) == "aws" ? upper(principals.key) : title(principals.key)
+        identifiers = principals.value
+      }
+    }
   }
 }
 

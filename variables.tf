@@ -1,8 +1,12 @@
 # target roles
 
-variable "allowed_accounts" {
-  description = "The list of aws account ids to allow them to assume roles in this account(e.g. 857026751867)"
-  default = ["336686831133"] // This is the account number of ID account
+variable "principals" {
+  description = "The map of trust relationship to allow them to assume roles in this role"
+  default = {
+    aws = ["336686831133"]
+    service = [""]
+    federated = [""]
+  }
 }
 
 variable "policy_arn" {
