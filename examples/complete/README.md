@@ -16,7 +16,7 @@ module "infra-engineer-role" {
   stack            = var.stack
   desc             = var.desc
   policy_arn       = ["arn:aws:iam::aws:policy/AdministratorAccess"]
-  prinsipals       = {
+  principals       = {
     "aws" = ["111122223333", "222233334444"]
   }
 }
