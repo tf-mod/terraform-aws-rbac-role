@@ -3,8 +3,9 @@
 ## Usage
 ### Create an IAM role to target aws account
 
-You can use this module like as below example. You can allow multiple accounts to assume the role adding them into `allowed_accounts` list. 
-#### latest example
+You can use this module like as below example. You can allow multiple accounts to assume the role adding them into `aws` in 'principals'. 
+
+#### The latest example
 
 ```
 module "infra-engineer-role" {
@@ -16,12 +17,12 @@ module "infra-engineer-role" {
   desc             = var.desc
   policy_arn       = ["arn:aws:iam::aws:policy/AdministratorAccess"]
   prinsipals       = {
-    "aws" = var.allowed_accounts
+    "aws" = ["111122223333", "222233334444"]
   }
 }
 ```
 
-#### Deprecated example
+#### Deprecated example (under 1.0.2)
 
 
 ```
