@@ -1,8 +1,9 @@
 
 # iam role module
 resource "aws_iam_role" "role" {
-  name               = local.name
-  assume_role_policy = data.aws_iam_policy_document.trustrel.json
+  name                 = local.name
+  assume_role_policy   = data.aws_iam_policy_document.trustrel.json
+  max_session_duration = var.session_duration
 }
 
 data "aws_iam_policy_document" "trustrel" {
