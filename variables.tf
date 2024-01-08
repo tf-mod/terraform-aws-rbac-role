@@ -3,8 +3,8 @@
 variable "principals" {
   description = "The map of trust relationship to allow them to assume roles in this role"
   default = {
-    aws = ["336686831133"]
-    service = [""]
+    aws       = ["336686831133"]
+    service   = [""]
     federated = [""]
   }
 }
