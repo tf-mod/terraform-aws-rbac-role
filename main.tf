@@ -11,7 +11,7 @@ data "aws_iam_policy_document" "trustrel" {
     effect  = "Allow"
     actions = ["sts:AssumeRole"]
     dynamic "principals" {
-      for_each = { for k, v in var.principals : k => v if k == "aws" || k == "service" }
+      for_each = { for k, v in var.principals : k => v if contains(["aws", "service"], k) }
       content {
         type        = lower(principals.key) == "aws" ? upper(principals.key) : title(principals.key)
         identifiers = principals.value
@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "trustrel" {
     effect  = "Allow"
     actions = ["sts:AssumeRoleWithWebIdentity"]
     dynamic "principals" {
-      for_each = { for k, v in var.principals : k => v if k == "federated" }
+      for_each = { for k, v in var.principals : k => v if contains(["federated"], k) }
       content {
         type        = lower(principals.key) == "federated" ? "Federated" : title(principals.key)
         identifiers = principals.value
