@@ -8,12 +8,24 @@ resource "aws_iam_role" "role" {
 
 data "aws_iam_policy_document" "trustrel" {
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = ["sts:AssumeRole"]
     dynamic "principals" {
-      for_each = var.principals
+      for_each = { for k, v in var.principals : k => v if contains(["aws", "service"], k) }
       content {
         type        = lower(principals.key) == "aws" ? upper(principals.key) : title(principals.key)
+        identifiers = principals.value
+      }
+    }
+  }
+
+  statement {
+    effect  = "Allow"
+    actions = ["sts:AssumeRoleWithWebIdentity"]
+    dynamic "principals" {
+      for_each = { for k, v in var.principals : k => v if contains(["federated"], k) }
+      content {
+        type        = lower(principals.key) == "federated" ? "Federated" : title(principals.key)
         identifiers = principals.value
       }
     }
